@@ -2349,7 +2349,7 @@ void frmQuery::OnExecScript(wxCommandEvent &event)
 
 	// Clear markers and indicators
 	sqlQuery->MarkerDeleteAll(0);
-	sqlQuery->StartStyling(0);
+	sqlQuery->StartStyling(0,0);
 	sqlQuery->SetStyling(sqlQuery->GetText().Length(), 0);
 
 	// Menu stuff to initialize
@@ -2504,7 +2504,7 @@ void frmQuery::execQuery(const wxString &query, int resultToRetrieve, bool singl
 
 	// Clear markers and indicators
 	sqlQuery->MarkerDeleteAll(0);
-	sqlQuery->StartStyling(0);
+	sqlQuery->StartStyling(0,0);
 	sqlQuery->SetStyling(sqlQuery->GetText().Length(), 0);
 
 	if (!sqlQuery->IsChanged())
