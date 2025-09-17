@@ -1,54 +1,14 @@
 ** Fork info **
 
-Apparently, I have become the curator of this code by virtue of having
-preserved the last remaining fork of the BigSQL fork of pgadmin3-lts.
-Although a limited amount of maintenance work has occurred, there is no
-active project leadership or commitments to maintain pgadmin-lts
-compatibility with future releases of PostgreSQL.  The master branch is functional
-with PostgreSQL 15.  YMMV.
-
-Also, this GitHub repo will not vanish.
-
--- 
-allentc
-
-
-**# pgAdmin3 LTS by BigSQL README #**
-
-pgAdmin3 has been superseded by pgAdmin4.  This repo exists to preserve
-the work as it was left by BigSQL and consolidate whatever maintenance
-effort occurs.  Binaries are not provided for any platform; you must build
-the application yourself.
-
-Introduction
-------------
-
-pgAdmin3 is a popular and feature rich Open Source administration and
-development platform for PostgreSQL, the most advanced Open Source database in
-the world.
-
-pgAdmin3 is designed to answer the needs of all users, from writing simple 
-SQL queries to developing complex databases. The graphical interface supports 
-all PostgreSQL features and makes administration easy. The application also 
-includes a syntax highlighting SQL editor, a server-side code editor, an 
-SQL/batch/shell job scheduling agent, support for the Slony-I replication 
-engine and much more. Server connection may be made using TCP/IP or Unix Domain
-Sockets (on *nix platforms), and may be SSL encrypted for security. No 
-additional drivers are required to communicate with the database server.
+Fork of the BigSQL fork of pgadmin3-lts from allentc/pgadmin3-lts, unctional
+with PostgreSQL 15.
 
 pgAdmin3 is Free Software released under the PostgreSQL License.
 
-**# README by Datatrans #**
 
-Code has been changed to adapt PostgreSQL internal changes up to version 15.2:
-- No more relhasoids in pg_class.
-- No more cache_value, is_cycled, is_called in sequence object (since PostgreSQL 11).
-- No more adsrc in pg_attrdef, it should be calculated as pg_catalog.pg_get_expr(adbin, adrelid) instead.
-- Declarative Table Partitioning DDL.
-- No more datlastsysoid in pg_database.
-
-If you are too lazy to read [INSTALL](./INSTALL) instructions, then try this for Debian/Ubuntu/Mint:
+Tried on Ubuntu 24.04 LTS
 ------------------------
+- Below are the instructions from allentc -
 ```
 # apt-get install libwxgtk3.0-dev wx3.0-headers wxgtk3.0 wx3.0
 
@@ -61,14 +21,18 @@ $ make -j8
 $ sudo make install
 ```
 
-for Centos/RedHat:
-------------------------
-```
-yum install wxGTK3 wxGTK3-devel
-yum install libssh2 libssh2-devel libxml2 libxml2-devel libxslt libxslt-devel openssl-devel #postgresql15 postgresql15-devel postgresql15-libs
+If the package does not compile on account of WxWidgets, download and build WxWidgets. e.g. ./configure --with-gtk=2, and if wx-config is not found, point it to the right location in the configure file.
 
-$ bash bootstrap
-$ ./configure --prefix=/opt/pgadmin3bigsql --with-wx-version=3.0  CFLAGS=-fPIC CXXFLAGS=-fPIC --with-pgsql=/usr/pgsql-15 --without-sphinx-build
-$ make -j8
-$ sudo make install
+If "--with-sphinx-build" is specified in ./configure, then use the system sphinx-build binary. If this throws an error then compile with "--without-sphinx-build".
+Errors with wxFONTWEIGHT_EXTRABOLD, in ./pgadmin/dlg/dlgMainConfig.cpp can be overcome by replacing the string with wxFONTWEIGHT_BOLD.
+Errors in the function call StartStyling(0) in pgadmin/frm/frmQuery.cpp: call with StartStyling(0,0), i.e. with two args, instead of one.
+
+Compilation was done with:
 ```
+./configure --prefix=/usr/local/lib/pgadmin3-lts --with-libgcrypt --with-wx-version=3.0  CFLAGS=-fPIC CXXFLAGS=-fPIC --without-sphinx-build
+make
+make install
+```
+
+
+
