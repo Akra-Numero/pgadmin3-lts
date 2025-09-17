@@ -33,6 +33,18 @@ Compilation was done with:
 make
 make install
 ```
+Finally, if you compiled WxWidgets from source, you may need to link the libraries:
+in /usr/lib/x86_64-linux-gnu/: 
+sudo ln -s /path/to/libwx_gtk2u_stc-3.0.so.0
+sudo ln -s /path/to/libwx_gtk2u_aui-3.0.so.0
+sudo ln -s /path/to/libwx_gtk2u_xrc-3.0.so.0
+sudo ln -s /path/to/libwx_gtk2u_html-3.0.so.0
+sudo ln -s /path/to/libwx_gtk2u_adv-3.0.so.0
+sudo ln -s /path/to/libwx_gtk2u_core-3.0.so.0
+sudo ln -s /path/to/libwx_baseu_xml-3.0.so.0
+sudo ln -s /path/to/libwx_baseu_net-3.0.so.0
+sudo ln -s /path/to/libwx_baseu-3.0.so.0
 
+Finally, add a launcher for pgadmin3 in /usr/share/applications/ as pgadmin3.desktop.
 
 
