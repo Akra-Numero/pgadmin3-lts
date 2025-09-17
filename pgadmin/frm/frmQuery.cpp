@@ -2880,7 +2880,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 
 				// Set an indicator on the error word (break on any kind of bracket, a space or full stop)
 				int sPos = errPos + selStart - 1, wEnd = 1;
-				sqlQueryExec->StartStyling(0);
+				sqlQueryExec->StartStyling(0,0);
 				int c = sqlQueryExec->GetCharAt(sPos + wEnd);
 				size_t len = sqlQueryExec->GetText().Length();
 				while(c != ' ' && c != '(' && c != '{' && c != '[' && c != '.' &&
