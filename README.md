@@ -1,6 +1,6 @@
 ** Fork info **
 
-Fork of the BigSQL fork of pgadmin3-lts from allentc/pgadmin3-lts, unctional
+Fork of the BigSQL fork of pgadmin3-lts from allentc/pgadmin3-lts, functional
 with PostgreSQL 15.
 
 pgAdmin3 is Free Software released under the PostgreSQL License.
